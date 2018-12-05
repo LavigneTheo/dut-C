@@ -1,5 +1,5 @@
 #include "Parfait.h"
-
+//tester si tomme est plus grand que n, faire attention  losrque sqrt(n) est ajouter 2 fois le test, utiliser conitnue?
 Boolean parfait(long number) {
 	long sum = 1;
 
@@ -7,11 +7,17 @@ Boolean parfait(long number) {
 		for (long i = 2; i < sqrt(number); i++)
 			if (number % i == 0)
 				sum += i + number / i;
+
+		if((int)sqrt(number) * (int)sqrt(number) == number)
+			sum -= sqrt(number);
 	}
 	else {
 		for (long i = 3; i < sqrt(number); i += 2)
 			if (number % i == 0)
 				sum += i + number / i;
+
+		if ((int)sqrt(number) * (int)sqrt(number) == number)
+			sum -= sqrt(number);
 	}
 	if (sum == number)
 		return TRUE;

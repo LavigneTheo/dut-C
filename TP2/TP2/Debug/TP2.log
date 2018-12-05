@@ -1,0 +1,6 @@
+﻿  Exercice3.cpp
+c:\code\univ\c\tp2\tp2\exercice3.cpp(21): warning C4013: 'calloc' undefined; assuming extern returning int
+c:\code\univ\c\tp2\tp2\exercice3.cpp(21): warning C4047: 'initializing': 'int *' differs in levels of indirection from 'int'
+  TP2.cpp
+  Generating Code...
+  TP2.vcxproj -> C:\code\univ\C\TP2\Debug\TP2.exe
