@@ -26,7 +26,7 @@ Boolean premier_option1(unsigned long number) {
 	if (number % 2 == 0)
 		return FALSE;
 
-	for (long i = 3; i < number; i++)
+	for (long i = 3; i < number; i+=2)
 		if (number % i == 0)
 			return FALSE;
 	return TRUE;
@@ -41,38 +41,26 @@ Boolean premier_option2(unsigned long number) {
 	if (number == 2)
 		return TRUE;
 
-	for (long i = 3; i < sqrt(number); i++)
+	for (long i = 3; i <= sqrt(number); i++)
 		if (number % i == 0)
 			return FALSE;
 	return TRUE;
 }
 
-/*
- * Exlure les multiples de 2 lors du test de divisibilite
-*/
-Boolean premier_option3(unsigned long number) {
-	if (number < 2)
-		return FALSE;
-	if (number == 2)
-		return TRUE;
-
-	for (long i = 3; i < number; i += 2)
-		if (number % i == 0)
-			return FALSE;
-	return TRUE;
-}
 
 /*
  * Exclure les multiples de 2 et de 3 lors du test de divisibilite
 */
-Boolean premier_option4(unsigned long number) {
+Boolean premier_option3(unsigned long number) {
 	if (number < 2)
 		return FALSE;
-	if (number == 2)
+	if (number == 2 || number == 3)
 		return TRUE;
+		if (number % 2 == 0 || number % 3 == 0)
+			return FALSE;
 
 	int pas = 4;
-	for (long i = 3; i < number; i+= (pas = 6 - pas))
+	for (long i = 5; i < number; i+= (pas = 6 - pas))
 		if (number % i == 0)
 			return FALSE;
 	return TRUE;
@@ -81,7 +69,7 @@ Boolean premier_option4(unsigned long number) {
 /* 
  * Enlever la condition testant si i est multiple du nombre
 */
-Boolean premier_option5(unsigned long number) {
+Boolean premier_option4(unsigned long number) {
 	if (number < 2)
 		return FALSE;
 	if (number == 2)
@@ -98,7 +86,7 @@ Boolean premier_option5(unsigned long number) {
 /*
  * Optimisation proposé par l'énoncé
  */
-Boolean premier_option6(unsigned long number) {
+Boolean premier_option5(unsigned long number) {
 	if (number < 2)
 		return FALSE;
 	if (number == 2)
@@ -106,28 +94,30 @@ Boolean premier_option6(unsigned long number) {
 	if (number % 2 == 0)
 		return FALSE;
 
-	for (long i = 3; i < sqrt(number); i += 2)
+	for (long i = 3; i <= sqrt(number); i += 2)
 		if (number % i == 0)
 			return FALSE;
 	return TRUE;
 }
 
+
 /*
  * Optimisation proposé par l'énoncé plus retirer les multiples de 3 ainsi que le test
  * de divisibilité au sein de la boucle
  */
-Boolean premier_option7(unsigned long number) {
+Boolean premier_option6(unsigned long number) {
 	if (number < 2)
 		return FALSE;
-	if (number == 2)
+	if (number == 2 || number == 3)
 		return TRUE;
-	if (number % 2 == 0)
+	if (number % 2 == 0 || number % 3 == 0)
 		return FALSE;
 
-	unsigned long i = 3;
+	unsigned long i = 5;
 	int pas = 4;
-	for (i; i < sqrt(number) + 1 && (number % i); i += (pas = 6 - pas));
 
+	for (i; i < sqrt(number) + 1 && (number % i); i += (pas = 6 - pas));
+	
 	if (i >= sqrt(number) + 1)
 		return TRUE;
 	return FALSE;
@@ -136,7 +126,7 @@ Boolean premier_option7(unsigned long number) {
 /*
  * 
  */
-void premier_option8(unsigned int limit) {
+void premier_option7(unsigned int limit) {
 
 	unsigned long long* prime_list = malloc(sizeof(unsigned long long) * limit);
 	unsigned long long* multiple_list = malloc(sizeof(unsigned long long) * limit);
@@ -145,7 +135,7 @@ void premier_option8(unsigned int limit) {
 	*multiple_list = 25;
 
 	int pas = 2;
-	unsigned long ptr = 0, found = 1;
+	unsigned long ptr, found = 1;
 	unsigned long long number = 7;
 
 	while (found < limit)
@@ -183,18 +173,18 @@ void print_until(int number) {
 	}
 }
 
-void search_for(int number) {
-	int found = 0, iterator = 0;
-	while (found <= number)
+void search_for(int limit) {
+	int line = 0, number = 0;
+	while (line <= limit)
 	{
-		iterator++;
-		if (premier_option4(iterator)) {
-			printf("%d\n", iterator);
-			if (found % 25 == 0 && found != 0) {
+		number++;
+		if (premier_option4(number)) {
+			line++;
+			printf("%d\n", number);
+			if (line % 25 == 0 && line != 0) {
 				printf("Appuyer sur une touche pour afficher les 25 premiers suivants");
 				getchar();
 			}
-			found++;
 		}
 	}
 }

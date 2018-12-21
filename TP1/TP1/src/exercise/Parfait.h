@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include "Premier.h"
 
-Boolean parfait(long number);
+Boolean parfait(unsigned long number);
+void parfait_addr(unsigned long number, Boolean* premier);
 unsigned long long parfait_opti(int power);
 void print_parfait_until(int limit);
-void seach_parfait(int number);
+void search_parfait(int number);

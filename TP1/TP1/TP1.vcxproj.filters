@@ -40,23 +40,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\data\test_1\opt7.txt" />
-    <Text Include="src\data\test_1\opt6.txt" />
-    <Text Include="src\data\test_1\opt5.txt" />
-    <Text Include="src\data\test_1\opt4.txt" />
-    <Text Include="src\data\test_1\opt3.txt" />
-    <Text Include="src\data\test_1\opt2.txt" />
-    <Text Include="src\data\test_1\opt1.txt" />
     <Text Include="src\data\test_1\opt0.txt" />
-    <Text Include="src\data\test_3\opt2.txt" />
-    <Text Include="src\data\test_3\opt6.txt" />
-    <Text Include="src\data\test_3\opt7.txt" />
-    <Text Include="src\data\test_3\opt8.txt" />
-    <Text Include="src\data\test_2\opt0.txt" />
-    <Text Include="src\data\test_2\opt1.txt" />
+    <Text Include="src\data\test_1\opt1.txt" />
+    <Text Include="src\data\test_1\opt2.txt" />
+    <Text Include="src\data\test_1\opt3.txt" />
+    <Text Include="src\data\test_1\opt4.txt" />
+    <Text Include="src\data\test_1\opt5.txt" />
+    <Text Include="src\data\test_1\opt6.txt" />
+    <Text Include="src\data\test_1\opt7.txt" />
     <Text Include="src\data\test_2\opt2.txt" />
-    <Text Include="src\data\test_2\opt3.txt" />
-    <Text Include="src\data\test_2\opt4.txt" />
     <Text Include="src\data\test_2\opt5.txt" />
     <Text Include="src\data\test_2\opt6.txt" />
     <Text Include="src\data\test_2\opt7.txt" />

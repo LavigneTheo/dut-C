@@ -14,8 +14,7 @@ Boolean premier_option3(unsigned long number);
 Boolean premier_option4(unsigned long number);
 Boolean premier_option5(unsigned long number);
 Boolean premier_option6(unsigned long number);
-Boolean premier_option7(unsigned long number);
-void premier_option8(unsigned int limit);
+void premier_option7(unsigned int limit);
 
 void print_until(int number);
 

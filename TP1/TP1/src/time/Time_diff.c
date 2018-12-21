@@ -1,15 +1,14 @@
 #include "Time_diff.h"
 
-
-
-#define GROUP_PER 500
+#define GROUP_PER 50
 
 void perf_test_1(unsigned long number) {
 
 	int array_size = number / GROUP_PER + 1;
 	int* data = calloc(array_size, sizeof(int));
 
-	Boolean(*func_test[8])(unsigned long) = {
+	//Pointeur des fonctions à éxécuter
+	Boolean(*func_test[7])(unsigned long) = {
 		&premier_option0,
 		&premier_option1,
 		&premier_option2,
@@ -17,10 +16,10 @@ void perf_test_1(unsigned long number) {
 		&premier_option4,
 		&premier_option5,
 		&premier_option6,
-		&premier_option7,
 	};
 
-	const char *paths_test_1[8];
+	//Chemin vers les fichiers on sont sauvegardé les données
+	const char *paths_test_1[7];
 	paths_test_1[0] = "./src/data/test_1/opt0.txt";
 	paths_test_1[1] = "./src/data/test_1/opt1.txt";
 	paths_test_1[2] = "./src/data/test_1/opt2.txt";
@@ -28,26 +27,10 @@ void perf_test_1(unsigned long number) {
 	paths_test_1[4] = "./src/data/test_1/opt4.txt";
 	paths_test_1[5] = "./src/data/test_1/opt5.txt";
 	paths_test_1[6] = "./src/data/test_1/opt6.txt";
-	paths_test_1[7] = "./src/data/test_1/opt7.txt";
 
-	for (int i = 0; i < 8; i++) {
-		run_test1(number, data, func_test[i]);
+	for (int i = 0; i < 7; i++) {
+		run_test(number, data, func_test[i]);
 		save_data(data, paths_test_1[i], array_size);
-	}
-
-	const char *paths_test_2[8];
-	paths_test_2[0] = "./src/data/test_2/opt0.txt";
-	paths_test_2[1] = "./src/data/test_2/opt1.txt";
-	paths_test_2[2] = "./src/data/test_2/opt2.txt";
-	paths_test_2[3] = "./src/data/test_2/opt3.txt";
-	paths_test_2[4] = "./src/data/test_2/opt4.txt";
-	paths_test_2[5] = "./src/data/test_2/opt5.txt";
-	paths_test_2[6] = "./src/data/test_2/opt6.txt";
-	paths_test_2[7] = "./src/data/test_2/opt7.txt";
-
-	for (int i = 0; i < 8; i++) {
-		run_test2(number, data, func_test[i]);
-		save_data(data, paths_test_2[i], array_size);
 	}
 
 	free(data);
@@ -57,20 +40,20 @@ void perf_test_2(unsigned long limit) {
 	int array_size = limit / GROUP_PER + 1;
 	int* data = calloc(array_size, sizeof(int));
 
-	Boolean(*func_test[4])(unsigned long) = {
+	Boolean(*func_test[3])(unsigned long) = {
 		&premier_option2,
+		&premier_option5,
 		&premier_option6,
-		&premier_option7,
 	};
 
-	const char *paths_test_1[5];
-	paths_test_1[0] = "./src/data/test_3/opt2.txt";
-	paths_test_1[1] = "./src/data/test_3/opt6.txt";
-	paths_test_1[2] = "./src/data/test_3/opt7.txt";
-	paths_test_1[3] = "./src/data/test_3/opt8.txt";
+	const char *paths_test_1[4];
+	paths_test_1[0] = "./src/data/test_2/opt2.txt";
+	paths_test_1[1] = "./src/data/test_2/opt5.txt";
+	paths_test_1[2] = "./src/data/test_2/opt6.txt";
+	paths_test_1[3] = "./src/data/test_2/opt7.txt";
 
 	for (int i = 0; i < 3; i++) {
-		run_test2(limit, data, func_test[i]);
+		run_test(limit, data, func_test[i]);
 		save_data(data, paths_test_1[i], array_size);
 	}
 
@@ -78,7 +61,7 @@ void perf_test_2(unsigned long limit) {
 	int diff, itrator_data = 0;
 	for (unsigned long i = GROUP_PER; i < limit; i += GROUP_PER) {
 		ftime(&start);
-		premier_option8(i);
+		premier_option7(i);
 		ftime(&end);
 		diff = (int)(1000.0 * (end.time - start.time)
 			+ (end.millitm - start.millitm));
@@ -105,63 +88,40 @@ void save_data(const int* data, const char* file_name, const int array_size) {
 
 	for (int i = 0; i < array_size - 2; i++)
 		fprintf(f, "%d %d\n", i, *(data + i));
-	
 
 	fclose(f);
 }
 
-void run_test2(const unsigned long number, int* data, Boolean(*function_premier)(unsigned long)) {
+void run_test(const unsigned int limit, int* data, Boolean(*function_premier)(unsigned long)) {
 	struct timeb start, end;
 	int diff;
 	ftime(&start);
-	int found = 0, iterator = 0, itrator_data = 0,  stage = 1;
+	unsigned int found = 0, itrator_data = 0, next_stage = GROUP_PER;
+	unsigned long number = 0;
 
-	while (found < number) {
-		iterator++;
-		if (function_premier(iterator)) {
+	while (found < limit) {
+		number++;
+		if (function_premier(number)) {
 			found++;
 		}
 
 
-		if (found % (GROUP_PER * stage) == 0 && found != 0) {
+		if (found == next_stage) {
 			ftime(&end);
-			stage++;
+			next_stage += GROUP_PER;
 			printf("%d\n", found);
-			diff = (int)(1000.0 * (end.time - start.time)
-				+ (end.millitm - start.millitm));
-			*(data + itrator_data++) = diff;
+			*(data + itrator_data++) = get_diff(start, end);
 			found = 0;
-			iterator = 0;
+			number = 0;
 			ftime(&start);
 		}
 	}
 }
 
-
-void run_test1(const unsigned long number, int* data, Boolean(*function_premier)(unsigned long)) {
-	struct timeb start, end;
-	int diff;
-	ftime(&start);
-	int found = 0, iterator = 0, itrator_data = 0;
-	Boolean saved = FALSE;
-	
-	while (found < number) {
-		iterator++;
-		if (function_premier(iterator)) {
-			found++;
-			saved = FALSE;
-		}
-
-
-		if (found % GROUP_PER == 0 && !saved) {
-			saved = TRUE;
-			
-			ftime(&end);
-			diff = (int)(1000.0 * (end.time - start.time)
-				+ (end.millitm - start.millitm));
-			*(data + itrator_data++) = diff;
-			printf("Found : %d - time : %d\n", found, diff);
-			ftime(&start);
-		}
-	}
+int get_diff(struct timeb start, struct timeb end) {
+	return (int)
+		(1000.0 * (end.time - start.time) +
+		(end.millitm - start.millitm));
 }
+
+
