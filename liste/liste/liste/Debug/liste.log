@@ -1,0 +1,6 @@
+﻿  Exercice.c
+c:\code\univ\c\liste\liste\liste\exercice.c(4): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\code\univ\c\liste\liste\liste\exercice.c(4): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+  Main.c
+  Generating Code...
+  liste.vcxproj -> C:\code\univ\C\liste\liste\Debug\liste.exe
