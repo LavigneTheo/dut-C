@@ -27,7 +27,8 @@ void free_node(List* list, Node* node);
 
 void append(List* list, void* data);
 void* get_at(List* list, unsigned int index);
+void pop(List* list, int index, void* data);
+
 Node* get_node_at(List* list, unsigned int index);
 
-void free_char_node(Node* node);
 void free_list(List* list);

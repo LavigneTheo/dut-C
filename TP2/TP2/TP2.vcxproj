@@ -155,10 +155,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Eercice1.cpp" />
-    <ClCompile Include="Exercice2.cpp" />
-    <ClCompile Include="Exercice3.cpp" />
-    <ClCompile Include="TP2.cpp" />
+    <ClCompile Include="Eercice1.c" />
+    <ClCompile Include="Exercice2.c" />
+    <ClCompile Include="Exercice3.c" />
+    <ClCompile Include="TP2.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exercice1.h" />

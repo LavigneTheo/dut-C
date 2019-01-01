@@ -8,3 +8,12 @@ char* list_to_str(List* list) {
 	
 	return str;
 }
+
+List* get_string_input() {
+	char c;
+	List* list = get_list(NULL, sizeof(char));
+	while ((c = getchar()) != '\n') {
+		append(list, &c);
+	}
+	return list;
+}

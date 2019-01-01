@@ -1,30 +1,23 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "Liste.h"
+#include "List.h"
 #include "Exercice.h"
+
+void process(List* list) {
+	char c = 't';
+	append(list, &c);
+}
 
 void main() {
 	
-	List* list = get_list(&free_char_node, sizeof(char));
-	
-	char a = 'a';
-	append(list, &a);
+	List* list = get_string_input();
 
-	a = 'b';
-	append(list, &a);
+	char c;
+	pop(list, 2, &c);
+	printf("%c\n", c);
 
-	a = 'c';
-	append(list, &a);
-
-	a = 'd';
-	append(list, &a);
-
-	a = 'e';
-	append(list, &a);
-
-	
-	list_to_str(list);
+	printf("%s\n", list_to_str(list));
 
 	free_list(list);
 }

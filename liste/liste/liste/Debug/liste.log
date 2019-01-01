@@ -1,6 +1,19 @@
 ﻿  Exercice.c
 c:\code\univ\c\liste\liste\liste\exercice.c(4): warning C4013: 'malloc' undefined; assuming extern returning int
 c:\code\univ\c\liste\liste\liste\exercice.c(4): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+  List.c
+c:\code\univ\c\liste\liste\liste\list.c(4): warning C4013: 'malloc' undefined; assuming extern returning int
+c:\code\univ\c\liste\liste\liste\list.c(15): warning C4047: '=': 'void *' differs in levels of indirection from 'int'
+c:\code\univ\c\liste\liste\liste\list.c(16): warning C4013: 'memcpy' undefined; assuming extern returning int
+c:\code\univ\c\liste\liste\liste\list.c(16): warning C4047: '=': 'void *' differs in levels of indirection from 'int'
+c:\code\univ\c\liste\liste\liste\list.c(4): warning C4047: 'initializing': 'Node *' differs in levels of indirection from 'int'
+c:\code\univ\c\liste\liste\liste\list.c(22): warning C4047: 'initializing': 'List *' differs in levels of indirection from 'int'
+c:\code\univ\c\liste\liste\liste\list.c(31): warning C4018: '>=': signed/unsigned mismatch
+c:\code\univ\c\liste\liste\liste\list.c(34): warning C4018: '>': signed/unsigned mismatch
+c:\code\univ\c\liste\liste\liste\list.c(36): warning C4018: '<': signed/unsigned mismatch
+c:\code\univ\c\liste\liste\liste\list.c(41): warning C4018: '<': signed/unsigned mismatch
+c:\code\univ\c\liste\liste\liste\list.c(54): warning C4013: 'free' undefined; assuming extern returning int
+c:\code\univ\c\liste\liste\liste\list.c(73): warning C4098: 'pop': 'void' function returning a value
   Main.c
   Generating Code...
   liste.vcxproj -> C:\code\univ\C\liste\liste\Debug\liste.exe

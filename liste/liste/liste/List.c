@@ -51,14 +51,10 @@ void* get_at(List* list, unsigned int index) {
 }
 
 void free_node(List* list, Node* node) {
-	list->free_data(node);
+	(list->free_data == NULL) ? free(node->data) : list->free_data(node);
 	free(node);
 
 	list->length--;
-}
-
-void free_char_node(Node* node) {
-	free((char*)node->data);
 }
 
 void free_list(List* list) {
@@ -70,4 +66,33 @@ void free_list(List* list) {
 	}
 	free_node(list, list->tail);
 	free(list);
+}
+
+void pop(List* list, int index, void* data) {
+	if (list->length == 0)
+		return NULL;
+
+	Node* n;
+	if (list->length == 1) {
+		n = list->head;
+	}
+	else if (index == 0) {
+		n = list->head;
+		list->head = n->next;
+		list->head->prev = NULL;
+	}
+	else if (index == list->length - 1) {
+		n = list->tail;
+		list->tail = n->prev;
+		list->tail->next = NULL;
+	}
+	else {
+		n = get_node_at(list, index);
+		n->prev->next = n->next;
+		n->next->prev = n->prev;
+	}
+
+	memcpy(data, n->data, list->data_size);
+
+	free_node(list, n);
 }
