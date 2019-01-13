@@ -18,6 +18,46 @@ void append(List* list, void* data) {
 	list->length++;
 }
 
+void prepend(List* list, void* data) {
+	Node* tmp = malloc(sizeof(Node));
+
+	if (list->length == 0) {
+		list->head = list->tail = tmp;
+	}
+	else {
+		tmp->next = list->head;
+		list->head->prev = tmp;
+		tmp->prev = NULL;
+		list->head = tmp;
+	}
+	tmp->data = malloc(list->data_size);
+	tmp->data = memcpy(tmp->data, data, list->data_size);
+
+	list->length++;
+}
+
+void insert(List* list, void* data, int index) {
+	Node* tmp = malloc(sizeof(Node));
+
+	if (index == 0) {
+		prepend(list, data);
+	}
+	else if (index == list->length) {
+		append(list, data);
+	}
+	else {
+		Node* n = get_node_at(list, index);
+		tmp->next = n;
+		tmp->prev = n->prev;
+		n->prev = tmp;
+		tmp->prev->next = tmp;
+
+		tmp->data = malloc(list->data_size);
+		tmp->data = memcpy(tmp->data, data, list->data_size);
+		list->length++;
+	}
+}
+
 List* get_list(free_function free_data, int data_size) {
 	List* list = malloc(sizeof(List));
 	list->data_size = data_size;
