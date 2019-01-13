@@ -177,17 +177,17 @@ void supression(char** source, char cara)
 	}
 }
 
-void suprime2(char **tch, char car)
+void suprime2(char*** tch, char car)
 {
 	char ** tmp, **res, *p;
 	int size_list, nb_deleted = 0, taille;
 
-	for (size_list = 0; *(tch + size_list) != NULL; size_list++);
+	for (size_list = 0; *(*tch + size_list) != NULL; size_list++);
 
 	for (int j = 0; j < size_list; j++) {
-		supression(&*(tch + j), car);
+		supression(&*(*tch + j), car);
 
-		if (*(tch + j) == NULL)
+		if (*(*tch + j) == NULL)
 			nb_deleted++;
 	}
 
@@ -198,24 +198,26 @@ void suprime2(char **tch, char car)
 		//Copie toute les chaines non vide de tch dans tmp
 		int tmp_i = 0;
 		for (int i = 0; i < size_list; i++)
-			if (*(tch + i) != NULL) {
-				*(tmp + tmp_i) = (char*)malloc(sizeof(char) * strlen(*(tch + i) + 1));
-				copie(*(tch + i), *(tmp + tmp_i++));
+			if (*(*tch + i) != NULL) {
+				*(tmp + tmp_i) = (char*)malloc(sizeof(char) * strlen(*(*tch + i) + 1));
+				copie(*(*tch + i), *(tmp + tmp_i++));
 			}
 
 		//suppression de tout les éléments de tch y compris l'element NULL de fin
 		for (int i = 0; i < size_list + 1; i++)
-			free(*(tch + i));
-		free(tch);
+			free(*(*tch + i));
+		free(*tch);
 
-		tch = (char**)malloc(sizeof(char*) * (size_list - nb_deleted + 1));
+		*tch = (char**)malloc(sizeof(char*) * (size_list - nb_deleted + 1));
 
 		//Passes les pointeurs contenant les chaines de tmp dans tch
 		for (int i = 0; i < size_list - nb_deleted; i++)
-			*(tch + i) = *(tmp + i);
+			*(*tch + i) = *(tmp + i);
 
 		//dernier élément à null
-		*(tch + size_list - nb_deleted) = NULL;
+		*(*tch + size_list - nb_deleted) = NULL;
+
+		free(tmp);
 	}
 
 }
@@ -286,7 +288,7 @@ void affichetch2(char **tch)
 int main()
 {
 	char** list = saisitch2();
-	dedouble_tch(list, 'l');
+	suprime2(&list, 'l');
 	affichetch2(list);
 
 	return 0;

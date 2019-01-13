@@ -27,6 +27,9 @@
     <ClCompile Include="Eercice1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Alexis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exercice2.h">
