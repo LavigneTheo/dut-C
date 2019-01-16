@@ -284,12 +284,3 @@ void affichetch2(char **tch)
 		affiche(tch[i]);
 	}
 }
-
-int main()
-{
-	char** list = saisitch2();
-	suprime2(&list, 'l');
-	affichetch2(list);
-
-	return 0;
-}

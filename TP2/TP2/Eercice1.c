@@ -28,20 +28,18 @@ char* get_string_v2() {
 char* get_string_v3() {
 	
 	char* str = NULL;
-	int i = 0;
+	int nb_char = 0;
 	char c;
 	while ((c = getchar()) != '\n')
 	{
-		char* tmp = malloc(sizeof(char) * i);
-		for (int it = 0; it < i; it++)
+		char* tmp = malloc(sizeof(char) * nb_char + 2);
+		for (int it = 0; it < nb_char; it++)
 			*(tmp + it) = *(str + it);
+		*(tmp + nb_char) = (char)c;
+		*(tmp + ++nb_char) = '\0';
+
 		free(str);
-		str = malloc(sizeof(char) * i + 2);
-		for (int it = 0; it < i; it++)
-			*(str + it) = *(tmp + it);
-		*(str + i) = (char)c;
-		*(str + ++i) = '\0';
-		free(tmp);
+		str = tmp;
 	}
 
 	return str;
