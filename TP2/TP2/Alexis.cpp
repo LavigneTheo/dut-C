@@ -247,6 +247,28 @@ void dedouble_str(char** str, char c) {
 	}
 }
 
+void suppr_str_start(char*** str_tab, char c) {
+	int nb_to_delete = 0, size;
+	for (size = 0; *(*str_tab + size) != NULL; size++) 
+		if (**(*str_tab + size) == c)
+			nb_to_delete++;
+	
+	if (nb_to_delete != 0) {
+		char** tmp = malloc(sizeof(char*) * size - nb_to_delete + 1);
+		*(tmp + size - nb_to_delete) = NULL;
+
+		int tmp_i = 0;
+		for (int i = 0; i < size; i++) {
+			if (**(*str_tab + i) != c)
+				*(tmp + tmp_i++) = *(*str_tab + i);
+			else
+				free(*(*str_tab + i));
+		}
+		free(*str_tab);
+		*str_tab = tmp;
+	}
+}
+
 
 void dedouble_tch(char** tab, char car)
 {
@@ -283,4 +305,10 @@ void affichetch2(char **tch)
 	{
 		affiche(tch[i]);
 	}
+}
+
+void main() {
+	char** lol = saisitch2();
+	suppr_str_start(&lol, 'l');
+	affichetch2(lol);
 }

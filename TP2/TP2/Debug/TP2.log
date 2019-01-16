@@ -1,6 +1,6 @@
-﻿  Eercice1.c
-c:\code\univ\c\tp2\tp2\eercice1.c(20): warning C4013: 'malloc' undefined; assuming extern returning int
-c:\code\univ\c\tp2\tp2\eercice1.c(20): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
-c:\code\univ\c\tp2\tp2\eercice1.c(41): warning C4013: 'free' undefined; assuming extern returning int
-c:\code\univ\c\tp2\tp2\eercice1.c(35): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
+﻿  Alexis.cpp
+c:\code\univ\c\tp2\tp2\alexis.cpp(153): warning C4101: 'j': unreferenced local variable
+c:\code\univ\c\tp2\tp2\alexis.cpp(183): warning C4101: 'taille': unreferenced local variable
+c:\code\univ\c\tp2\tp2\alexis.cpp(182): warning C4101: 'p': unreferenced local variable
+c:\code\univ\c\tp2\tp2\alexis.cpp(182): warning C4101: 'res': unreferenced local variable
   TP2.vcxproj -> C:\code\univ\C\TP2\Debug\TP2.exe
